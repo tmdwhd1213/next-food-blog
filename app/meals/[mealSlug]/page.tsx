@@ -3,14 +3,15 @@ import styles from "./page.module.css";
 import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
 
-type Meal = {
+export interface Meal {
   title: string;
   image: string;
   creator_email: string;
   creator: string;
   summary: string;
   instructions: string;
-};
+  slug: string;
+}
 
 export default function MealPostPage({
   params,
