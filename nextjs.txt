@@ -40,3 +40,13 @@ app/blog/[slug]/page.tsx => 대괄호 폴더는 뒤에 무슨 경로가 올지 �
  params.slug는 post-1을 가짐.
 
  'use client'를 쓰는 곳은 'use server'를 쓰지 못함. 즉 분리해야함.
+
+ Next.js는 꽤나 공격적인 캐싱을 수행한다.
+ (npm run build)를 실행하면 미리 생성될 수 있는 앱의 모든 페이지를 사전에 랜더링을 한다.
+ 단점 : const meals = await getMeals(); -> 다시 가져오지 않음. 빌드 후에는 다신 실행되지 않음.
+ 하려면 액션이 되고 나서 Next.js에서 기본적으로 제공되는 revalidatePath();를 추가한다.
+ /*
+ await saveMeal(meal);
+  revalidatePath("/meals", "layout"); // -> 1: 이동하고자 하는 경로, 2: 그의 레이아웃
+  redirect("/meals");
+ */

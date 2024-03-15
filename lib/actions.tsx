@@ -3,9 +3,10 @@
 import slugify from "slugify";
 import { saveMeal } from "./meals";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
-function isInvalidText(text) {
-  return !text || text.trim() === "";
+function isInvalidText(text: string | null | undefined) {
+  return !text ?? text.trim() === "";
 }
 
 export async function shareMeal(prevState, formData) {
@@ -39,5 +40,6 @@ export async function shareMeal(prevState, formData) {
 
   // console.log(meal);
   await saveMeal(meal);
+  revalidatePath("/meals");
   redirect("/meals");
 }
