@@ -38,3 +38,5 @@ app/blog/[slug]/page.tsx => 대괄호 폴더는 뒤에 무슨 경로가 올지 �
  파라미터로 function Page({params}: {params: {slug: string}}) { <p>{params.slug}</p>}
  상위 페이지에서 경로를 설정하고 클릭하면 (ex. <Link href="/blog/post-1">Post 1</Link>)
  params.slug는 post-1을 가짐.
+
+ 'use client'를 쓰는 곳은 'use server'를 쓰지 못함. 즉 분리해야함.
