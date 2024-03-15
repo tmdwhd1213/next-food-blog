@@ -3,14 +3,20 @@ import styles from "./page.module.css";
 import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
 
+type File = {
+  size: number;
+  type: string;
+  name: string;
+  lastModified: number;
+};
 export interface Meal {
   title: string;
-  image: string;
+  image: string | File;
   creator_email: string;
   creator: string;
   summary: string;
   instructions: string;
-  slug: string;
+  slug?: string;
 }
 
 export default function MealPostPage({
@@ -30,7 +36,7 @@ export default function MealPostPage({
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={meal.image} alt={meal.title} fill />
+          <Image src={meal.image as string} alt={meal.title} fill />
         </div>
         <div className={styles.headerText}>
           <h1>{meal.title}</h1>

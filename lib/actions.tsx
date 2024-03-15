@@ -1,6 +1,10 @@
 "use server";
 
-export async function shareMeal(formData: FormData) {
+import slugify from "slugify";
+import { saveMeal } from "./meals";
+import { redirect } from "next/navigation";
+
+export async function shareMeal(formData) {
   const meal = {
     title: formData.get("title"),
     summary: formData.get("summary"),
@@ -10,5 +14,7 @@ export async function shareMeal(formData: FormData) {
     creator_email: formData.get("email"),
   };
 
-  console.log(meal);
+  // console.log(meal);
+  await saveMeal(meal);
+  redirect("/meals");
 }
