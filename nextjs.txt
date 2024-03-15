@@ -1,0 +1,40 @@
+// react-router-dom 에서 아래의 코드가 Next.js에서 폴더를 만드는 것
+// app/about/page.tsx
+const router = createBrowserRouter([
+  {path: '/', element: <Home />},
+  {path: '/about', element: <About />}
+])
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+
+icon.png -> favIcon으로 만들어줌(페이지 title 옆에 아이콘)
+
+layout.tsx -> metadata: html의 head태그 부분을 담당(구글링할 때 구글 검색 엔진이 이걸 보고 키워드로서 노출함.
+ RootLayout: body태그 부분을 {children}으로 감싸서 표현
+
+components 폴더 -> page.tsx를 만들지 않았으니 따로 웹 경로가 생기는 것은 아니지만 app폴더 밖으로 빼고 이를
+ 쉽게 참조하려면 tsconfig.json파일에서 아래와 같은 설정을 해둘 것. '@/components/header.tsx'
+{"compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    },
+ ...
+
+page.js => Create a new page (e.g., app/about/page.js creates a <your-domain>/about page)
+
+layout.js => Create a new layout that wraps sibling and nested pages
+
+not-found.js => Fallback page for "Not Found" errors (thrown by sibling or nested pages or layouts)
+
+error.js => Fallback page for other errors (thrown by sibling pages or nested pages or layouts)
+
+loading.js => Fallback page which is shown whilst sibling or nested pages (or layouts) are fetching data
+
+route.js => Allows you to create an API route (i.e., a page which does NOT return JSX code but instead data, e.g., in the JSON format)
+
+app/blog/[slug]/page.tsx => 대괄호 폴더는 뒤에 무슨 경로가 올지 모를때, 변수 느낌.
+ 파라미터로 function Page({params}: {params: {slug: string}}) { <p>{params.slug}</p>}
+ 상위 페이지에서 경로를 설정하고 클릭하면 (ex. <Link href="/blog/post-1">Post 1</Link>)
+ params.slug는 post-1을 가짐.
