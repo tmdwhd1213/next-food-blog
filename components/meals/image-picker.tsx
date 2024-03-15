@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "@/styles/image-picker.module.css";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
