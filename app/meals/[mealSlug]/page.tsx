@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 type File = {
   size: number;
@@ -17,6 +18,14 @@ export interface Meal {
   summary: string;
   instructions: string;
   slug?: string;
+}
+
+export async function generateMetadata({ params }) {
+  const meal = getMeal(params.mealSlug);
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
 }
 
 export default function MealPostPage({
